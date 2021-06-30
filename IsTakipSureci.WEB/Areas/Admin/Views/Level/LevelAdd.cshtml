@@ -1,0 +1,36 @@
+﻿@model LevelAddViewModel
+
+@{
+    ViewData["Title"] = "LevelAdd";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="container-fluid">
+
+
+    <form class="w-75 mx-auto p-3" method="post">
+
+        <div class="form-group">
+            <label asp-for="Tanim"></label>
+            <span asp-validation-for="Tanim" class="text-danger"></span>
+            <input type="text" asp-for="Tanim" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-sm btn-success"> <i class="fas fa-check mr-2"></i> Kaydet</button>
+
+
+    </form>
+
+
+
+</div>
+
+
+@section Scripts{ 
+
+    <script src="~/jquery-validate/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+}

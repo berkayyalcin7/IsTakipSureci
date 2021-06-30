@@ -1,0 +1,67 @@
+﻿@model AppUserViewModel
+
+@{
+    ViewData["Title"] = "KayitOl";
+    Layout = "~/Views/Shared/_StandartLayout.cshtml";
+}
+
+<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+<div class="col-lg-7">
+    <div class="p-5">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Hesabınızı Oluşturun !</h1>
+        </div>
+        <form class="user" asp-action="KayitOl" method="post">
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label asp-for="Name"></label>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <input asp-for="Name" class="form-control form-control-user">
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="Surname"></label>
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                    <input asp-for="Surname" class="form-control form-control-user">
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <input asp-for="Email" class="form-control form-control-user">
+            </div>
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <span asp-validation-for="Username" class="text-danger"></span>
+                <input asp-for="Username" class="form-control form-control-user">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label asp-for="Password"></label>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <input asp-for="Password" class="form-control form-control-user">
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="ConfirmPassword"></label>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    <input asp-for="ConfirmPassword" class="form-control form-control-user">
+                </div>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <button class="btn btn-primary btn-user btn-block" type="submit">
+                Kayıt Ol
+            </button>
+
+        </form>
+        <hr>
+        <div class="text-center">
+            <a class="small" href="forgot-password.html">Şifrenizi Unuttunuz mu ?</a>
+        </div>
+        <div class="text-center">
+            <a class="small" asp-action="Index">Sisteme Üye iseniz | Giriş Yapın</a>
+        </div>
+    </div>
+</div>
+

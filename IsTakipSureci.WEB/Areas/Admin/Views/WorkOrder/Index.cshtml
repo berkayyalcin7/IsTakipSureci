@@ -1,0 +1,74 @@
+﻿@model List<WorkListAllViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    @if (Model.Count != 0)
+    {
+        <table class="table table-hover table-sm mt-3">
+            <thead>
+                <tr>
+                    <th>İş Tanımı</th>
+                    <th>Açıklama</th>
+                    <th>Oluşturma Tarihi</th>
+                    <th>İşi Alan Kullanıcı</th>
+                    <th>Aciliyet Durumu</th>
+                    <th>Rapor Sayısı</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.WorkName</td>
+                    <td>@item.Description</td>
+                    <td>@item.CreatedDate.ToString("D")</td>
+                    <td>
+                        @{
+                            if (item.AppUser == null)
+                            { <span class="badge badge-danger">Çalışan Personel Atanmamıştır</span>}
+
+                            else
+                            {
+                                <span class="badge badge-success">@item.AppUser.Name - @item.AppUser.Surname</span>
+
+                            }
+                        }
+                    </td>
+                    <td>@item.Level.Tanim</td>
+                    <td>@item.Reports.Count</td>
+                  
+                    <td>
+                        @{
+                            if (item.AppUser == null)
+                            { 
+                                <a asp-action="PersonalAssign" asp-route-id="@item.Id" class="btn btn-info btn-sm"><i class="fas fa-people-arrows  mr-2"></i>Personel Ata</a>
+                            
+                            }
+
+                            else
+                            {
+                                <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info btn-sm"><i class="fas fa-info-circle  mr-2"></i>Detay Göster</a>
+                            }
+                        }
+                    </td>
+
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="p-3 text-center mt-3 lead">
+            <strong> Herhangi bir İş Bulunamadı</strong>
+            <a asp-action="WorkAdd" asp-controller="Work" class="btn btn-info btn-sm">Yeni İş Tanımı Oluştur</a>
+
+        </div>
+    }
+</div>
