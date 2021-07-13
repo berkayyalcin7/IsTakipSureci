@@ -1,4 +1,7 @@
-﻿
+﻿@{
+    object active = TempData["Active"];
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,46 +55,31 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                PANEL
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" asp-action="Index" asp-controller="Work" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Gelen İş Emirleri</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Araçlar :</h6>                
-                        <a class="collapse-item" asp-action="Index" asp-controller="Work" >Listele</a>
-                    </div>
-                </div>
+
             </li>
 
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-check"></i>
-                    <span>Tamamladığım İşler</span>
+                <a class="nav-link @(active == "task" ? "active" : "")" asp-controller="Task" asp-action="Index" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-check-circle"></i>
+                    <span>Tamamlanan İşler</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                   
-                    </div>
-                </div>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
+
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -124,7 +112,7 @@
             </div>
 
         </ul>
-      
+
         <div id="content-wrapper" class="d-flex flex-column">
 
             @await Component.InvokeAsync("Wrapper")
@@ -132,17 +120,10 @@
 
             @RenderBody()
 
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
+
 
 
         </div>
-
 
     </div>
 

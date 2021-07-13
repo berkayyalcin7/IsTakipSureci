@@ -14,6 +14,8 @@ namespace IsTakipSureci.Business.Interfaces
 
         List<Work> GetAllWithTables(Expression<Func<Work, bool>> filter);
 
+        List<Work> GetAllWithTablesCompleted(out int pageCount, int userId, int activePage=1);
+
 
         Work GetWithLevel(int id);
 

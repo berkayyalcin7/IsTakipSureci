@@ -1,0 +1,58 @@
+﻿@model ReportUpdateViewModel
+
+@{
+    ViewData["Title"] = "UpdateReport";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+}
+
+<div class="card text-white bg-info mb-3">
+    <div class="lead p-3">
+
+        <h5 class="card-title">Şuan bu göreve Rapor yazmaktasınız .</h5>
+
+
+        <div class="card-body">
+            <p class="card-text">
+                <span class="text-danger">Görev Adı : </span> @Model.Work.WorkName
+            </p>
+            <p class="card-text">
+                <span class="text-danger">Görev Açıklaması : </span> @Model.Work.Description
+            </p>
+
+            <p class="card-text">
+                <span class="text-danger">Aciliyet : </span> @Model.Work.Level.Tanim
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<form asp-action="UpdateReport" method="post" class="w-100 mx-auto p-3">
+    <input type="hidden" asp-for="WorkId" />
+    <div class="form-group">
+        <label asp-for="ReportTitle"></label>
+        <span asp-validation-for="ReportTitle" class="text-danger"></span>
+        <input asp-for="ReportTitle" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReportDescription"></label>
+        <span asp-validation-for="ReportDescription" class="text-danger"></span>
+        <textarea asp-for="ReportDescription" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <a asp-action="Index" class="btn btn-warning btn-sm"><i class="fas fa-chevron-circle-left mr-2"></i> Geri Dön  </a>
+        <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check pr-2"></i> Güncelle </button>
+
+    </div>
+
+</form>
+
+@section Scripts{
+
+    <script src="~/jquery-validate/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+}
+

@@ -33,6 +33,11 @@ namespace IsTakipSureci.Business.Concrete
             return _reportDal.GetById(id);
         }
 
+        public Report GetByWorkId(int id)
+        {
+            return _reportDal.GetByWorkId(id);
+        }
+
         public void Save(Report entity)
         {
             _reportDal.Save(entity);
@@ -42,5 +47,7 @@ namespace IsTakipSureci.Business.Concrete
         {
             _reportDal.Update(entity);
         }
+
+
     }
 }

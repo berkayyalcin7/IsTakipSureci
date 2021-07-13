@@ -15,6 +15,8 @@ namespace IsTakipSureci.DataAccess.Interfaces
 
         List<Work> GetAllWithTables(Expression<Func<Work,bool>> filter);
 
+        List<Work> GetAllWithTablesCompleted(out int pageCount, int userId,int activePage);
+
         Work GetWithLevel(int id);
 
         List<Work> GetByUserId(int userId);

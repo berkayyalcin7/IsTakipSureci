@@ -67,5 +67,22 @@ namespace IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 .Where(filter)
                 .OrderByDescending(x => x.CreatedDate).ToList();
         }
+
+        public List<Work> GetAllWithTablesCompleted(out int pageCount, int userId,int activePage=1)
+        {
+            using var context = new IsSureciContext();
+            // Eager Loading Include ile Level'i dahil ettik
+             var returnValue = context.Works
+                .Include(x => x.Level)
+                .Include(x => x.Reports)
+                .Include(x => x.AppUser)
+                .Where(x => x.AppUserId == userId && x.Status ==true)
+                .OrderByDescending(x => x.CreatedDate);
+
+            pageCount = (int)Math.Ceiling((double)returnValue.Count() / 3);
+
+            // Sayfalama işlemi
+            return returnValue.Skip((activePage - 1) * 3).Take(3).ToList();
+        }
     }
 }

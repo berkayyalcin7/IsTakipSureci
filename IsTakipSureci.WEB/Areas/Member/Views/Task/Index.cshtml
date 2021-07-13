@@ -1,0 +1,73 @@
+﻿@model List<WorkListAllViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
+    int index = 0;
+}
+
+<div class="container-fluid">
+
+    @foreach (var gorev in Model)
+    {
+        index++;
+        <div class="card my-1">
+            <h5 class="card-header">@gorev.WorkName</h5>
+            <div class="card-body">
+
+                <h5 class="card-title"> <span class="text-danger">Aciliyet Durumu : </span> <b>@gorev.Level.Tanim</b></h5>
+                <p class="card-text">@gorev.Description</p>
+
+                <p class="text-right">
+                    @if (gorev.Reports.Count > 0)
+                    {
+                        <a class="btn btn-light btn-sm" data-toggle="collapse" href="#collapseExample-@index" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Raporlara Git <i class="fas fa-caret-down ml-2"></i>
+                            <span class="badge badge-success">@gorev.Reports.Count</span>
+                        </a>
+                    }
+                </p>
+                <div class="collapse" id="collapseExample-@index">
+                    <table class="table table-hover table-bordered table-sm">
+                        <tr>
+                            <th>Ad</th>
+                            <th>Tanım</th>
+
+                        </tr>
+                        @foreach (var item in gorev.Reports)
+                        {
+                            <tr>
+                                <td>@item.ReportTitle</td>
+                                <td>@item.ReportDescription</td>
+
+                            </tr>
+
+                        }
+                    </table>
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+    }
+
+    <nav aria-label="Page navigation example" class="float-right">
+
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.ToplamSayfa; i++)
+            {
+                <li class="page-item @(ViewBag.AktifSayfa==i?"active":"")"><a class="page-link" asp-action="Index" asp-route-activePage="@i">@i</a></li>
+            }
+        </ul>
+    </nav>
+
+
+</div>
+

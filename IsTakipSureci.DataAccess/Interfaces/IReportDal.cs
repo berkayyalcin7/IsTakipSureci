@@ -7,6 +7,6 @@ namespace IsTakipSureci.DataAccess.Interfaces
 {
     public interface IReportDal:IRepositoryDal<Report>
     {
-
+        Report GetByWorkId(int id);
     }
 }

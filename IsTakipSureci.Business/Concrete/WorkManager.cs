@@ -71,5 +71,10 @@ namespace IsTakipSureci.Business.Concrete
         {
             return _workDal.GetAllWithTables(filter);
         }
+
+        public List<Work> GetAllWithTablesCompleted(out int pageCount, int userId, int activePage)
+        {
+            return _workDal.GetAllWithTablesCompleted(out pageCount, userId, activePage);
+        }
     }
 }
