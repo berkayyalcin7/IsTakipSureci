@@ -14,5 +14,7 @@ namespace IsTakipSureci.Entities.Concrete
         public string Picture { get; set; } = "icon-default.png";
 
         public List<Work> Works { get; set; }
+        //Bildirimler listelenecek
+        public List<Notify> Notifys { get; set; }
     }
 }

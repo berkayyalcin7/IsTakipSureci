@@ -31,6 +31,7 @@ namespace IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Contexts
             modelBuilder.ApplyConfiguration(new LevelMap());
             modelBuilder.ApplyConfiguration(new ReportMap());
             modelBuilder.ApplyConfiguration(new AppUserMap());
+            modelBuilder.ApplyConfiguration(new NotifyMap());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -39,5 +40,7 @@ namespace IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Contexts
         public DbSet<Level> Levels { get; set; }
 
         public DbSet<Report> Reports { get; set; }
+
+        public DbSet<Notify> Notifys { get; set; }
     }
 }

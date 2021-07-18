@@ -21,11 +21,14 @@ namespace IsTakipSureci.WEB.Areas.Member.Controllers
 
         private readonly UserManager<AppUser> _userManager;
 
-        public WorkController(IWorkService workService, UserManager<AppUser> userManager, IReportService reportService)
+        private readonly INotifyService _notifyService;
+
+        public WorkController(IWorkService workService, UserManager<AppUser> userManager, IReportService reportService,INotifyService notifyService)
         {
             _workService = workService;
             _userManager = userManager;
             _reportService = reportService;
+            _notifyService = notifyService;
         }
 
         public IActionResult Index()
@@ -69,7 +72,7 @@ namespace IsTakipSureci.WEB.Areas.Member.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddReport(ReportAddViewModel model)
+        public async Task<IActionResult> AddReport(ReportAddViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -79,6 +82,22 @@ namespace IsTakipSureci.WEB.Areas.Member.Controllers
                     ReportTitle = model.ReportTitle,
                     ReportDescription = model.ReportDescription
                 });
+
+                //Rolü admin olan kullanıcıları getir
+                var adminList = await _userManager.GetUsersInRoleAsync("Admin");
+                //İlgili kullanıcı
+                var activeUser = await _userManager.FindByNameAsync(User.Identity.Name);
+
+                foreach (var admin in adminList)
+                {
+                    _notifyService.Save(new Notify
+                    {
+                        Description = $"{activeUser.Name} {activeUser.Surname} yeni bir rapor yazdı.. Rapor yazılma saati :{DateTime.Now.ToString("dddd, dd MMMM yyyy")}",
+                        AppUserId=admin.Id,
+                    });
+                }
+
+
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -118,11 +137,25 @@ namespace IsTakipSureci.WEB.Areas.Member.Controllers
         }
 
         // Görev Tamamlama Modali
-        public IActionResult CompleteWork(int workId)
+        public async  Task<IActionResult> CompleteWork(int workId)
         {
             var updatingWork = _workService.GetById(workId);
             updatingWork.Status = true;
             _workService.Update(updatingWork);
+
+            //Rolü admin olan kullanıcıları getir
+            var adminList = await _userManager.GetUsersInRoleAsync("Admin");
+            //İlgili kullanıcı
+            var activeUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            foreach (var admin in adminList)
+            {
+                _notifyService.Save(new Notify
+                {
+                    Description = $"{activeUser.Name} {activeUser.Surname} verilen görevi tamamladı. Tamamlama Saati : {DateTime.Now.ToString("dddd, dd MMMM yyyy")}",
+                    AppUserId = admin.Id,
+                });
+            }
+
             // Content dönmeyeceğiz.
             return Json(null);
         }

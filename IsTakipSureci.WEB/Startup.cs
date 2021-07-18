@@ -34,11 +34,12 @@ namespace IsTakipSureci.WEB
             services.AddScoped<ILevelService, LevelManager>();
             services.AddScoped<IAppUserService, AppUserManager>();
             services.AddScoped<IFileService, FileManager>();
-
+            services.AddScoped<INotifyService, NotifyManager>();
             services.AddScoped<IWorkDal, EfWorkRepository>();
             services.AddScoped<IReportDal, EfReportRepository>();
             services.AddScoped<ILevelDal, EfLevelRepository>();
             services.AddScoped<IAppUserDal, EfAppUserRepository>();
+            services.AddScoped<INotifyDal, EfNotifyRepository>();
 
 
             services.AddDbContext<IsSureciContext>();
