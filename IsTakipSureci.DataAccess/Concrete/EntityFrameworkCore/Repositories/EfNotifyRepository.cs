@@ -15,5 +15,11 @@ namespace IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Repositories
             using var context = new IsSureciContext();
             return context.Notifys.Where(x => x.AppUserId == appUserId && !x.Status).ToList();
         }
+
+        public int GetUnReadNotifyByUserId(int id)
+        {
+            using var context = new IsSureciContext();
+            return context.Notifys.Count(x => x.AppUserId == id && !x.Status);
+        }
     }
 }

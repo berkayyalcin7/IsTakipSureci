@@ -22,6 +22,9 @@ namespace IsTakipSureci.DataAccess.Interfaces
         List<Work> GetByUserId(int userId);
 
         Work GetWithReport(int id);
+
+        int GetFinishWorkCountByUserId(int id);
+        int GetWorkCountNotFinishByUserId(int id);
       
     }
 }

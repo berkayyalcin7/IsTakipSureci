@@ -38,6 +38,11 @@ namespace IsTakipSureci.Business.Concrete
             return _reportDal.GetByWorkId(id);
         }
 
+        public int GetReportCountByUserId(int id)
+        {
+            return _reportDal.GetReportCountByUserId(id);
+        }
+
         public void Save(Report entity)
         {
             _reportDal.Save(entity);

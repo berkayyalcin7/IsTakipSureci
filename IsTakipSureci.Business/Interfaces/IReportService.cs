@@ -9,5 +9,7 @@ namespace IsTakipSureci.Business.Interfaces
     {
         Report GetByWorkId(int id);
 
+        int GetReportCountByUserId(int id);
+
     }
 }

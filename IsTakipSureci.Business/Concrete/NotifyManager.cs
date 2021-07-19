@@ -36,6 +36,11 @@ namespace IsTakipSureci.Business.Concrete
             return _notifyDal.GetByStatus(appUserId);
         }
 
+        public int GetUnReadNotifyByUserId(int id)
+        {
+            return _notifyDal.GetUnReadNotifyByUserId(id);
+        }
+
         public void Save(Notify entity)
         {
             _notifyDal.Save(entity);

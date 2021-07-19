@@ -8,5 +8,7 @@ namespace IsTakipSureci.Business.Interfaces
     public interface INotifyService:IService<Notify>
     {
         List<Notify> GetByStatus(int appUserId);
+
+        int GetUnReadNotifyByUserId(int id);
     }
 }

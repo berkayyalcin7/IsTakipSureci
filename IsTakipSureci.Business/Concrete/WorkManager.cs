@@ -76,5 +76,15 @@ namespace IsTakipSureci.Business.Concrete
         {
             return _workDal.GetAllWithTablesCompleted(out pageCount, userId, activePage);
         }
+
+        public int GetFinishWorkCountByUserId(int id)
+        {
+            return _workDal.GetFinishWorkCountByUserId(id);
+        }
+
+        public int GetWorkCountNotFinishByUserId(int id)
+        {
+            return _workDal.GetWorkCountNotFinishByUserId(id);
+        }
     }
 }

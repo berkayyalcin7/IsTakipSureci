@@ -20,12 +20,14 @@ namespace IsTakipSureci.WEB.Areas.Admin.Controllers
         private readonly IWorkService _workService;
         private readonly UserManager<AppUser> _userManager;
         private readonly IFileService _fileService;
-        public WorkOrderController(IAppUserService appUserService, IWorkService workService, UserManager<AppUser> userManager, IFileService fileService)
+        private readonly INotifyService _notifyService;
+        public WorkOrderController(IAppUserService appUserService, IWorkService workService, UserManager<AppUser> userManager, IFileService fileService,INotifyService notifyService)
         {
             _appUserService = appUserService;
             _workService = workService;
             _userManager = userManager;
             _fileService = fileService;
+            _notifyService = notifyService;
         }
 
         public IActionResult Index()
@@ -101,6 +103,14 @@ namespace IsTakipSureci.WEB.Areas.Admin.Controllers
         {
             var updatedWork = _workService.GetById(personalAssignViewModel.WorkId);
             updatedWork.AppUserId = personalAssignViewModel.AppUserId;
+
+            _notifyService.Save(new Notify
+            {
+                AppUserId=personalAssignViewModel.AppUserId,
+                Description=$" '{updatedWork.WorkName}'  adlı iş için görevlendirildiniz."
+            });
+
+
             _workService.Update(updatedWork);
 
             return RedirectToAction("Index");

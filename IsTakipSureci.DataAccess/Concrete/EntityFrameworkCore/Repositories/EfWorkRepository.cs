@@ -84,5 +84,20 @@ namespace IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Repositories
             // Sayfalama işlemi
             return returnValue.Skip((activePage - 1) * 3).Take(3).ToList();
         }
+
+        public int GetFinishWorkCountByUserId(int id)
+        {
+            using var context = new IsSureciContext();
+
+            return context.Works.Count(x => x.AppUserId == id && x.Status);
+
+        }
+
+        public int GetWorkCountNotFinishByUserId(int id)
+        {
+            using var context = new IsSureciContext();
+
+            return context.Works.Count(x => x.AppUserId == id && !x.Status);
+        }
     }
 }
