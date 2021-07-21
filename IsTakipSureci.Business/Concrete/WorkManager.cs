@@ -86,5 +86,15 @@ namespace IsTakipSureci.Business.Concrete
         {
             return _workDal.GetWorkCountNotFinishByUserId(id);
         }
+
+        public int GetNotAssignWorkCount()
+        {
+            return _workDal.GetNotAssignWorkCount();
+        }
+
+        public int GetFinishedWorkCount()
+        {
+            return _workDal.GetFinishedWorkCount();
+        }
     }
 }

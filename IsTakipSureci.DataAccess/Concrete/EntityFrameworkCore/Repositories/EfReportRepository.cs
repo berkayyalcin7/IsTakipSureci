@@ -17,6 +17,12 @@ namespace IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Repositories
             return context.Reports.Include(x => x.Work).ThenInclude(x=>x.Level).Where(y=>y.Id==id).FirstOrDefault();
         }
 
+        public int GetReportCount()
+        {
+            using var context = new IsSureciContext();
+            return context.Reports.Count();
+        }
+
         public int GetReportCountByUserId(int id)
         {
             using var context = new IsSureciContext();

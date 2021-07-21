@@ -11,5 +11,7 @@ namespace IsTakipSureci.Business.Interfaces
 
         int GetReportCountByUserId(int id);
 
+        int GetReportCount();
+
     }
 }

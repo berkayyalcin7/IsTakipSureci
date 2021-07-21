@@ -99,5 +99,19 @@ namespace IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Repositories
 
             return context.Works.Count(x => x.AppUserId == id && !x.Status);
         }
+
+        public int GetNotAssignWorkCount()
+        {
+            using var context = new IsSureciContext();
+
+            return context.Works.Count(x => x.AppUserId == null && !x.Status);
+
+        }
+
+        public int GetFinishedWorkCount()
+        {
+            using var context = new IsSureciContext();
+            return context.Works.Count(x=>x.Status);
+        }
     }
 }

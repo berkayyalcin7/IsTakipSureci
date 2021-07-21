@@ -9,5 +9,7 @@ namespace IsTakipSureci.DataAccess.Interfaces
     {
         Report GetByWorkId(int id);
         int GetReportCountByUserId(int id);
+
+        int GetReportCount();
     }
 }
