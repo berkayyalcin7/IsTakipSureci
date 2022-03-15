@@ -1,8 +1,16 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using IsTakipSureci.Business.Concrete;
 using IsTakipSureci.Business.Interfaces;
+using IsTakipSureci.Business.ValidationRules.FluentValidation;
 using IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Repositories;
 using IsTakipSureci.DataAccess.Interfaces;
+using IsTakipSureci.DTO.DTOs.AppUserDtos;
+using IsTakipSureci.DTO.DTOs.LevelDtos;
+using IsTakipSureci.DTO.DTOs.NotifyDtos;
+using IsTakipSureci.DTO.DTOs.ReportDtos;
+using IsTakipSureci.DTO.DTOs.WorkDtos;
 using IsTakipSureci.Entities.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -67,8 +75,20 @@ namespace IsTakipSureci.WEB
 
             });
 
+            services.AddAutoMapper(typeof(Startup));
 
-            services.AddControllersWithViews();
+            // Validator'larý DI ile çalýþtýrma
+            services.AddTransient<IValidator<LevelAddDto>, LevelAddValidator>();
+            services.AddTransient<IValidator<LevelUpdateDto>, LevelUpdateValidator>();
+            services.AddTransient<IValidator<AppUserAddDto>, AppUserAddValidator>();
+            services.AddTransient<IValidator<AppUserLoginDto>, AppUserLoginValidator>();
+            services.AddTransient<IValidator<WorkAddDto>, WorkAddValidator>();
+            services.AddTransient<IValidator<WorkUpdateDto>, WorkUpdateValidator>();
+            services.AddTransient<IValidator<ReportAddDto>, ReportAddValidator>();
+            services.AddTransient<IValidator<ReportUpdateDto>, ReportUpdateValidator>();
+
+
+            services.AddControllersWithViews().AddFluentValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

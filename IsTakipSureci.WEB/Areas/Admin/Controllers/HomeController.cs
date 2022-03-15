@@ -40,7 +40,6 @@ namespace IsTakipSureci.WEB.Areas.Admin.Controllers
          
          
          */
-
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -51,6 +50,6 @@ namespace IsTakipSureci.WEB.Areas.Admin.Controllers
             ViewBag.ReportCount = _reportService.GetReportCount();
 
             return View();
-        }
+        }  
     }
 }

@@ -25,5 +25,15 @@ namespace IsTakipSureci.Business.Concrete
         {
             return _appUserDal.GetAllMemberUser(out toplamSayfa,aranacakKelime, aktifSayfa);
         }
+
+        public List<DualHelper> GetMostFinishedWorkUser()
+        {
+            return _appUserDal.GetMostFinishedWorkUser();
+        }
+
+        public List<DualHelper> GetMostTaskedUser()
+        {
+            return _appUserDal.GetMostTaskedUser();
+        }
     }
 }

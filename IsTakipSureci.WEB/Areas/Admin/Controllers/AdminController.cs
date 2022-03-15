@@ -18,9 +18,7 @@ namespace IsTakipSureci.WEB.Areas.Admin.Controllers
 
 
         public async Task<IActionResult> Index()
-        {
-          
-
+        {     
             return View();
         }
     }

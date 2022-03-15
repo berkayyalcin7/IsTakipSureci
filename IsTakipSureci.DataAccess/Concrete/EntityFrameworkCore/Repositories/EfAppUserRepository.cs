@@ -1,6 +1,7 @@
 ﻿using IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Contexts;
 using IsTakipSureci.DataAccess.Interfaces;
 using IsTakipSureci.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Repositories
                 }).ToList();
         }
 
-        public List<AppUser> GetAllMemberUser(out int toplamSayfa,string aranacakKelime, int aktifSayfa = 1)
+        public List<AppUser> GetAllMemberUser(out int toplamSayfa, string aranacakKelime, int aktifSayfa = 1)
         {
             using var context = new IsSureciContext();
 
@@ -81,5 +82,48 @@ namespace IsTakipSureci.DataAccess.Concrete.EntityFrameworkCore.Repositories
 
             return result.ToList();
         }
+
+        /* 
+         
+           select AspNetUsers.UserName , COUNT(Works.Id) from AspNetUsers inner join Works on AspNetUsers.Id = Works.AppUserId
+  where Works.Status = 1 group by AspNetUsers.UserName 
+         
+         */
+
+        public List<DualHelper> GetMostFinishedWorkUser()
+        {
+            using var context = new IsSureciContext();
+
+            return context.Works.Include(x => x.AppUser)
+                .Where(x => x.Status == true)
+                .GroupBy(x => x.AppUser.UserName)
+                .OrderByDescending(x=>x.Count())
+                .Take(5)
+                .Select(x=>new
+                DualHelper
+                { 
+                    Name=x.Key,
+                    WorkCount=x.Count()
+                }).ToList();
+        }
+
+        // En çok görevde çalıaşn
+        public List<DualHelper> GetMostTaskedUser()
+        {
+            using var context = new IsSureciContext();
+
+            return context.Works.Include(x => x.AppUser)
+                .Where(x => !x.Status && x.AppUserId !=null)
+                .GroupBy(x => x.AppUser.UserName)
+                .OrderByDescending(x => x.Count())
+                .Take(5)
+                .Select(x => new
+                DualHelper
+                {
+                    Name = x.Key,
+                    WorkCount = x.Count()
+                }).ToList();
+        }
+
     }
 }

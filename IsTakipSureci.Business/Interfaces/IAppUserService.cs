@@ -9,5 +9,9 @@ namespace IsTakipSureci.Business.Interfaces
     {
         List<AppUser> GetAllMemberUser();
         List<AppUser> GetAllMemberUser(out int toplamSayfa,string aranacakKelime, int aktifSayfa = 1);
+
+        List<DualHelper> GetMostTaskedUser();
+
+        List<DualHelper> GetMostFinishedWorkUser();
     }
 }

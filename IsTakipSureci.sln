@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IsTakipSureci.Business", "I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IsTakipSureci.Entities", "IsTakipSureci.Entities\IsTakipSureci.Entities.csproj", "{2E5FCCAE-7479-4F04-A2EF-4DBC84D2D08E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsTakipSureci.WEB", "IsTakipSureci.WEB\IsTakipSureci.WEB.csproj", "{3115D45E-D4DD-4556-B8E3-42F67EA47B67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IsTakipSureci.WEB", "IsTakipSureci.WEB\IsTakipSureci.WEB.csproj", "{3115D45E-D4DD-4556-B8E3-42F67EA47B67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsTakipSureci.DTO", "IsTakipSureci.DTO\IsTakipSureci.DTO.csproj", "{E7795EB3-5560-442E-BCBE-BF93BE4AB4D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{3115D45E-D4DD-4556-B8E3-42F67EA47B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3115D45E-D4DD-4556-B8E3-42F67EA47B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3115D45E-D4DD-4556-B8E3-42F67EA47B67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7795EB3-5560-442E-BCBE-BF93BE4AB4D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7795EB3-5560-442E-BCBE-BF93BE4AB4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7795EB3-5560-442E-BCBE-BF93BE4AB4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7795EB3-5560-442E-BCBE-BF93BE4AB4D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
